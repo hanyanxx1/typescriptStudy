@@ -67,7 +67,7 @@ function params(target: any, key: string, index: number) {
   // target 原型 key drinnk index => 0
   console.log(key, index);
 }
-// @eat
+@eat
 class Person {
   // eat!:()=>void
   @toUpperCase

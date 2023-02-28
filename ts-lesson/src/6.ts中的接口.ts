@@ -4,6 +4,17 @@
 // interface 可以被类实现 和继承 ， type没有功能
 // type 可以使用联合类型  interface 不能使用联合类型
 
+let school = {
+  // 接口默认的功能是规范类型的
+  name: "zf",
+  age: 12,
+};
+// type ISschool = ; // 类型反推 就是根据代码推导出一个类型，方便使用
+
+type schools = Array<typeof school>;
+function aa(school: schools) {}
+aa([{ name: "zf", age: 123 }]);
+
 // 1）如何用接口描述对象类型 , 如果有联合类型 就使用type
 interface IObj {
   name: string;
@@ -158,5 +169,33 @@ class Cat extends Animal {
 }
 
 // abstract（可以放置具体的实现） interface (只能放一些抽象的属性和方法 不能有具体实现)
+
+// 8.可以用接口来描述实例
+
+// 单例模式
+// let instance: Person;
+// type IPerson = new (name:string)=>Person  描述的是构造函数类型
+interface IPerson<T> {
+  new (name: string): T;
+}
+function createInstance<T>(clazz: IPerson<T>, name: string) {
+  // if (instance) return instance;
+  return new clazz(name);
+}
+class Person {
+  eat() {}
+  constructor(public name: string) {}
+}
+class Dog {
+  drink() {}
+  constructor(public name: string) {}
+}
+
+// 泛型就是只有当使用的时候 才能确定类型， 通过参数传入类型
+let r = createInstance<Person>(Person, "张三"); // 类可以充当类型，可以描述实例
+r.eat();
+
+// 接口的使用  接口特性 extends 、 implements （不能使用联合类型）
+// 别名可以使用联合类型 但是不能继承和实现
 
 export {};

@@ -23,6 +23,10 @@ const arr2: (number | string)[] = ["a", 1]; // 并集的含义
 const arr3: any[] = ["", 1, {}];
 const arr4: Array<boolean> = [true, false];
 
+// interface Array<T>{
+//     [key:number]:T
+// }
+
 // 元组  ts中自己实现的  内容固定  类型固定
 const tuple: [string, boolean, number] = ["a", true, 1]; // 初始化 必须按照要求填入数据
 let r = tuple.pop();
